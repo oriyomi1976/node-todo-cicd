@@ -4,4 +4,4 @@ services:
   web:
     image: "oriyomi1976/node-app-test-new:latest"
     ports:
-      - "8008:8008"
+      - "8000:8000"
