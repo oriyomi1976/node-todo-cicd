@@ -6,18 +6,18 @@ pipeline {
         stage("code"){
             steps{
                 git url: "https://github.com/oriyomi1976/node-todo-cicd.git", branch: "master"
-                echo 'bhaiyya code clone ho gaya'
+                echo  'pull code successfully'
             }
         }
         stage("build and test"){
             steps{
                 sh "docker build -t oriyomi1976/node-app-test-new ."
-                echo 'code build bhi ho gaya'
+                echo ' build docker image successfully'
             }
         }
         stage("scan image"){
             steps{
-                echo 'image scanning ho gayi'
+                echo 'image scanning succesfil'
             }
         }
         stage("push"){
@@ -26,14 +26,14 @@ pipeline {
                 sh "docker login -u ${env.dockerhubUser} -p ${env.dockerhubPass}"
                 sh "docker tag oriyomi1976/node-app-test-new:latest oriyomi1976/node-app-test-new:latest"
                 sh "docker push oriyomi1976/node-app-test-new:latest"
-                echo 'image push ho gaya'
+                echo 'image push succesfully'
                 }
             }
         }
         stage("deploy"){
             steps{
                 sh "docker-compose down && docker-compose up -d"
-                echo 'deployment ho gayi'
+                echo 'deployment succesful'
             }
         }
     }
